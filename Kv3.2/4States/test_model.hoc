@@ -1,0 +1,49 @@
+//Neuron input to test the model. 
+//For more information on how to compile the model and run this input file
+//see the NEURON website FAQ (https://www.neuron.yale.edu/neuron/faq)
+
+load_file("nrngui.hoc") // Loads the run and gui libraries
+
+create soma, dend //Create 3 sections, one soma and an array of two dendrites
+access soma //Makes soma the default
+
+//We set the parameters and add channels
+soma {
+  nseg = 10
+  diam = 3.18
+  L = 700
+  Ra = 123.0
+  insert hh
+  gkbar_hh=0
+  el_hh=-70
+}
+
+//We add a current clamp
+objectvar stim  // create a new object
+soma stim = new IClamp(0.5) // Current clamp in the soma at half its length
+
+//Defining the stimulus applied by the clamp
+stim.del = 50
+stim.dur = 400
+stim.amp = 1.0
+
+//Now we add the kv channel model
+soma insert Kv32_4States
+soma.gbar_Kv32_4States=100
+soma.gkbar_hh=0.0
+tstop=500
+
+//Make a graph of voltage vs time
+objref vg
+vg = new Graph(0)  // creates but does not display a new Graph
+vg.size(0,tstop,-80,80)  // axis scaling
+vg.view(0, -80, tstop, 160, 200, 200, 300.48, 200.32)  // draws it on the screen
+  // in a window with user-specified location (5th and 6th args) and size (last 2 args)
+graphList[0].append(vg)  // graphList[0] is for all objects that are to be 
+  // updated at integer multiples of dt
+vg.addexpr("soma.v(0.5)", 1, 1, 0.8, 0.9, 2)
+
+run() //Initialize and run the simulation
+
+
+

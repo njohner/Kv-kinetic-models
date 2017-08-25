@@ -1,0 +1,9 @@
+parameter,value,unit
+Ri,0.33071,
+Vc,45.9891,mV
+Zc,0.56225,
+kc,0.05974,/ms
+ki,1.0,/ms
+ric_c,0.0032382,
+vc_ic,10.0,
+vic_c,1.7574,

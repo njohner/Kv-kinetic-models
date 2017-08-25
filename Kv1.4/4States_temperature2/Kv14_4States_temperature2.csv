@@ -1,0 +1,14 @@
+parameter,value,unit
+Hkc,0.14983,/K
+Hki,-0.01484,/K
+Hri,-0.32246,/K
+Hvc,1.0,/K
+Hvic_c,1.0,/K
+Ri,0.022781,
+Vc,-15.2509,mV
+Zc,1.5923,
+kc,0.038047,/ms
+ki,0.028339,/ms
+ric_c,0.00001,
+vc_ic,1000.0,
+vic_c,0.029426,
